@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_4" version="4.4.1">
+    <Header copyright="Copyright (c) 2021 Software AG" description="Default description">
+        <Application name="Nyoka" version="5.5.0"/>
+        <Timestamp>2024-04-23 09:55:55.622760</Timestamp>
+    </Header>
+    <DataDictionary numberOfFields="2">
+        <DataField name="Fluid temperature in C" optype="continuous" dataType="double"/>
+        <DataField name="target" optype="continuous" dataType="double"/>
+    </DataDictionary>
+    <TransformationDictionary>
+        <DerivedField name="poly1-x0" optype="continuous" dataType="double">
+            <Apply function="product">
+                <Apply function="pow">
+                    <FieldRef field="Fluid temperature in C"/>
+                    <Constant dataType="integer">1</Constant>
+                </Apply>
+            </Apply>
+        </DerivedField>
+    </TransformationDictionary>
+    <RegressionModel modelName="LinearRegression" functionName="regression">
+        <MiningSchema>
+            <MiningField name="Fluid temperature in C" usageType="active" optype="continuous"/>
+            <MiningField name="target" usageType="target" optype="continuous"/>
+        </MiningSchema>
+        <Output>
+            <OutputField name="predicted_target" optype="continuous" dataType="double" feature="predictedValue"/>
+        </Output>
+        <RegressionTable intercept="-18193.7764285714292782">
+            <NumericPredictor name="poly1-x0" exponent="1" coefficient="481.0395714285714348"/>
+        </RegressionTable>
+    </RegressionModel>
+</PMML>

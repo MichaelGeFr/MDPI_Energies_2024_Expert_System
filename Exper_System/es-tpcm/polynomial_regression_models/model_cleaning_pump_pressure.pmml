@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_4" version="4.4.1">
+    <Header copyright="Copyright (c) 2021 Software AG" description="Default description">
+        <Application name="Nyoka" version="5.5.0"/>
+        <Timestamp>2024-04-23 10:02:31.179292</Timestamp>
+    </Header>
+    <DataDictionary numberOfFields="2">
+        <DataField name="Pump pressure in bar" optype="continuous" dataType="double"/>
+        <DataField name="target" optype="continuous" dataType="double"/>
+    </DataDictionary>
+    <TransformationDictionary>
+        <DerivedField name="poly1-x0" optype="continuous" dataType="double">
+            <Apply function="product">
+                <Apply function="pow">
+                    <FieldRef field="Pump pressure in bar"/>
+                    <Constant dataType="integer">1</Constant>
+                </Apply>
+            </Apply>
+        </DerivedField>
+        <DerivedField name="poly1-x1" optype="continuous" dataType="double">
+            <Apply function="product">
+                <Apply function="pow">
+                    <FieldRef field="Pump pressure in bar"/>
+                    <Constant dataType="integer">2</Constant>
+                </Apply>
+            </Apply>
+        </DerivedField>
+    </TransformationDictionary>
+    <RegressionModel modelName="LinearRegression" functionName="regression">
+        <MiningSchema>
+            <MiningField name="Pump pressure in bar" usageType="active" optype="continuous"/>
+            <MiningField name="target" usageType="target" optype="continuous"/>
+        </MiningSchema>
+        <Output>
+            <OutputField name="predicted_target" optype="continuous" dataType="double" feature="predictedValue"/>
+        </Output>
+        <RegressionTable intercept="1455.0569351341432593">
+            <NumericPredictor name="poly1-x0" exponent="1" coefficient="739.2061096342158635"/>
+            <NumericPredictor name="poly1-x1" exponent="1" coefficient="-98.3713464473457719"/>
+        </RegressionTable>
+    </RegressionModel>
+</PMML>

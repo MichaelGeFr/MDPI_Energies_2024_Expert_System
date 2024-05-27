@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+include = "\\.pyi?$|\\.py?$|"
+exclude = "__pycache__/"
+line_length = 120
+target_version = ["py37","py38","py39"]
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.pytest.ini_options]
+addopts = "--cov-config=pyproject.toml"
+testpaths = [
+    "test",
+]
+
+[tool.coverage.run]
+# Configure which directories should be included in the test coverage evaluation
+source = [
+    "es-tpcm"
+]
+omit = [
+    "*/venv/*",
+    "*/.venv/*",
+    "*/docs/*",
+    "*/build/*",
+    "*/dist/*",
+]
+
+[tool.mypy]
+python_version = 3.7
+files = "es-tpcm"
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+no_implicit_optional = true
+warn_unused_ignores = true
+warn_unreachable = true
+show_column_numbers = true
+
+# If you want to exclude some files from type checking, list them here
+exclude = [
+    "^test/",
+]
+
+# If you want to exclude some imported modules from type checking (i.e. because they don't support
+# typing), list them here
+[[tool.mypy.overrides]]
+module = [
+    "numpy.*",
+]
+ignore_missing_imports = true
