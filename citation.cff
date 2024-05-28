@@ -1,0 +1,20 @@
+cff-version: 1.0.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Ioshchikhes"
+  given-names: "Borys"
+  orcid: "0000-0003-2798-4276"
+- family-names: "Frank"
+  given-names: "Michael"
+  orcid: "0000-0002-8614-2231"
+- family-names: "Elserafi"
+  given-names: "Ghada"
+  orcid: "0000-0002-3084-4373"
+- family-names: "Magin"
+  given-names: "Jona"
+  orcid: "0000-0002-6024-3886"
+title: "Developing Expert Systems for Improving Energy Efficiency in Manufacturing: A case study on parts cleaning"
+version: 1.0.0
+doi: tbd
+date-released: 2024-05-27
+url: tbd
